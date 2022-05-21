@@ -1,6 +1,6 @@
 specVersion: 0.0.5
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: BoredApeYachtClub
@@ -19,8 +19,14 @@ dataSources:
         - Transfer
       abis:
         - name: BoredApeYachtClub
-          file: ./abis/BoredApeYachtClub.json
+          file: BoredApeYachtClub/abis/BoredApeYachtClub.json
       eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/bored-ape-yacht-club.ts
+      file: BoredApeYachtClub/BoredApeYachtClub.wasm
