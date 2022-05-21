@@ -1,13 +1,28 @@
+# fulltext query: searchable keywords
+type _Schema_
+  @fulltext(
+    name: "apeFilter"
+    langauge: en
+    algorithm: rank
+    include: [
+      {
+        entity: "BoredApeToken"
+        fields: [{ name: "eyes" }, { name: "background" }]
+      }
+      { entity: "BoredApeUser" }
+    ]
+  )
+
 type BoredApeToken @entity(immutable: true) {
   id: Bytes!
 
-# image info
+  # image info
   tokenID: BigInt!
   contentURI: String!
   imageURI: String
   baseURI: String
 
-# traits
+  # traits
   eyes: String
   background: String
   hat: String
@@ -16,14 +31,13 @@ type BoredApeToken @entity(immutable: true) {
   fur: String
   earring: String
 
-# relation
+  # relation
   owner: BoredApeUser!
   creator: BoredApeUser!
 }
 
-
 type BoredApeUser @entity(immutable: true) {
   id: Bytes!
-  tokens: [BoredApeToken!]! @derivedfrom(field: 'owner')
-  created: [BoredApeToken!]! @derivedfrom(field: 'creator')
+  tokens: [BoredApeToken!]! @derivedfrom(field: "owner")
+  created: [BoredApeToken!]! @derivedfrom(field: "creator")
 }
