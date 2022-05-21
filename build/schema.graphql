@@ -1,8 +1,0 @@
-type BoredApeYachtClub @entity(immutable: true) {
-  id: ID!
-  MAX_APES: BigInt!
-  owner: Bytes!
-  name: String!
-  saleIsActive: Boolean
-  apePrice: BigInt!
-}

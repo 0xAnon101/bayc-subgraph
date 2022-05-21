@@ -3,20 +3,19 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: BoredApeYachtClub
+    name: baycToken
     network: mainnet
     source:
       address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
       abi: BoredApeYachtClub
+      startBlock: 12287507
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - Approval
-        - ApprovalForAll
-        - OwnershipTransferred
-        - Transfer
+        - BoredApeToken
+        - BoredApeUser
       abis:
         - name: BoredApeYachtClub
           file: ./abis/BoredApeYachtClub.json

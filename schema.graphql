@@ -1,8 +1,29 @@
-type BoredApeYachtClub @entity(immutable: true) {
-  id: ID!
-  MAX_APES: BigInt!
-  owner: Bytes!
-  name: String!
-  saleIsActive: Boolean
-  apePrice: BigInt!
+type BoredApeToken @entity(immutable: true) {
+  id: Bytes!
+
+# image info
+  tokenID: BigInt!
+  contentURI: String!
+  imageURI: String
+  baseURI: String
+
+# traits
+  eyes: String
+  background: String
+  hat: String
+  mouth: String
+  clothes: String
+  fur: String
+  earring: String
+
+# relation
+  owner: BoredApeUser!
+  creator: BoredApeUser!
+}
+
+
+type BoredApeUser @entity(immutable: true) {
+  id: Bytes!
+  tokens: [BoredApeToken!]! @derivedfrom(field: 'owner')
+  created: [BoredApeToken!]! @derivedfrom(field: 'creator')
 }

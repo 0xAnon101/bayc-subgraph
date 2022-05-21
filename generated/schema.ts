@@ -44,48 +44,72 @@ export class BoredApeYachtClub extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get MAX_APES(): BigInt {
-    let value = this.get("MAX_APES");
+  get tokenID(): BigInt {
+    let value = this.get("tokenID");
     return value!.toBigInt();
   }
 
-  set MAX_APES(value: BigInt) {
-    this.set("MAX_APES", Value.fromBigInt(value));
+  set tokenID(value: BigInt) {
+    this.set("tokenID", Value.fromBigInt(value));
   }
 
-  get owner(): Bytes {
-    let value = this.get("owner");
-    return value!.toBytes();
-  }
-
-  set owner(value: Bytes) {
-    this.set("owner", Value.fromBytes(value));
-  }
-
-  get name(): string {
-    let value = this.get("name");
+  get contentURI(): string {
+    let value = this.get("contentURI");
     return value!.toString();
   }
 
-  set name(value: string) {
-    this.set("name", Value.fromString(value));
+  set contentURI(value: string) {
+    this.set("contentURI", Value.fromString(value));
   }
 
-  get saleIsActive(): boolean {
-    let value = this.get("saleIsActive");
-    return value!.toBoolean();
+  get imageURI(): string | null {
+    let value = this.get("imageURI");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set saleIsActive(value: boolean) {
-    this.set("saleIsActive", Value.fromBoolean(value));
+  set imageURI(value: string | null) {
+    if (!value) {
+      this.unset("imageURI");
+    } else {
+      this.set("imageURI", Value.fromString(<string>value));
+    }
   }
 
-  get apePrice(): BigInt {
-    let value = this.get("apePrice");
-    return value!.toBigInt();
+  get baseURI(): string | null {
+    let value = this.get("baseURI");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set apePrice(value: BigInt) {
-    this.set("apePrice", Value.fromBigInt(value));
+  set baseURI(value: string | null) {
+    if (!value) {
+      this.unset("baseURI");
+    } else {
+      this.set("baseURI", Value.fromString(<string>value));
+    }
+  }
+
+  get collection(): string | null {
+    let value = this.get("collection");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set collection(value: string | null) {
+    if (!value) {
+      this.unset("collection");
+    } else {
+      this.set("collection", Value.fromString(<string>value));
+    }
   }
 }

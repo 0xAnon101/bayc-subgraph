@@ -8,5 +8,12 @@ export function handleTransfer(event: TransferEvent): void {
     entity = new BoredApeYachtClub(event.transaction.from.toHex());
   }
 
+  /**
+   * load ipfs of bayc
+   */
+
+  const baseHash = "QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq";
+  const ipfsURI = `ipfs.io/ipfs/${baseHash}/`;
+
   entity.save();
 }
