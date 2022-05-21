@@ -11,7 +11,7 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class BoredApeYachtClub extends Entity {
+export class BoredApeToken extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -19,20 +19,18 @@ export class BoredApeYachtClub extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save BoredApeYachtClub entity without an ID");
+    assert(id != null, "Cannot save BoredApeToken entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        `Entities of type BoredApeYachtClub must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        `Entities of type BoredApeToken must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("BoredApeYachtClub", id.toString(), this);
+      store.set("BoredApeToken", id.toString(), this);
     }
   }
 
-  static load(id: string): BoredApeYachtClub | null {
-    return changetype<BoredApeYachtClub | null>(
-      store.get("BoredApeYachtClub", id)
-    );
+  static load(id: string): BoredApeToken | null {
+    return changetype<BoredApeToken | null>(store.get("BoredApeToken", id));
   }
 
   get id(): string {
@@ -96,8 +94,8 @@ export class BoredApeYachtClub extends Entity {
     }
   }
 
-  get collection(): string | null {
-    let value = this.get("collection");
+  get eyes(): string | null {
+    let value = this.get("eyes");
     if (!value || value.kind == ValueKind.NULL) {
       return null;
     } else {
@@ -105,11 +103,181 @@ export class BoredApeYachtClub extends Entity {
     }
   }
 
-  set collection(value: string | null) {
+  set eyes(value: string | null) {
     if (!value) {
-      this.unset("collection");
+      this.unset("eyes");
     } else {
-      this.set("collection", Value.fromString(<string>value));
+      this.set("eyes", Value.fromString(<string>value));
     }
+  }
+
+  get background(): string | null {
+    let value = this.get("background");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set background(value: string | null) {
+    if (!value) {
+      this.unset("background");
+    } else {
+      this.set("background", Value.fromString(<string>value));
+    }
+  }
+
+  get hat(): string | null {
+    let value = this.get("hat");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set hat(value: string | null) {
+    if (!value) {
+      this.unset("hat");
+    } else {
+      this.set("hat", Value.fromString(<string>value));
+    }
+  }
+
+  get mouth(): string | null {
+    let value = this.get("mouth");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set mouth(value: string | null) {
+    if (!value) {
+      this.unset("mouth");
+    } else {
+      this.set("mouth", Value.fromString(<string>value));
+    }
+  }
+
+  get clothes(): string | null {
+    let value = this.get("clothes");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set clothes(value: string | null) {
+    if (!value) {
+      this.unset("clothes");
+    } else {
+      this.set("clothes", Value.fromString(<string>value));
+    }
+  }
+
+  get fur(): string | null {
+    let value = this.get("fur");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set fur(value: string | null) {
+    if (!value) {
+      this.unset("fur");
+    } else {
+      this.set("fur", Value.fromString(<string>value));
+    }
+  }
+
+  get earring(): string | null {
+    let value = this.get("earring");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set earring(value: string | null) {
+    if (!value) {
+      this.unset("earring");
+    } else {
+      this.set("earring", Value.fromString(<string>value));
+    }
+  }
+
+  get owner(): string {
+    let value = this.get("owner");
+    return value!.toString();
+  }
+
+  set owner(value: string) {
+    this.set("owner", Value.fromString(value));
+  }
+
+  get creator(): string {
+    let value = this.get("creator");
+    return value!.toString();
+  }
+
+  set creator(value: string) {
+    this.set("creator", Value.fromString(value));
+  }
+}
+
+export class BoredApeUser extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save BoredApeUser entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.STRING,
+        `Entities of type BoredApeUser must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("BoredApeUser", id.toString(), this);
+    }
+  }
+
+  static load(id: string): BoredApeUser | null {
+    return changetype<BoredApeUser | null>(store.get("BoredApeUser", id));
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value!.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get tokens(): Array<string> {
+    let value = this.get("tokens");
+    return value!.toStringArray();
+  }
+
+  set tokens(value: Array<string>) {
+    this.set("tokens", Value.fromStringArray(value));
+  }
+
+  get created(): Array<string> {
+    let value = this.get("created");
+    return value!.toStringArray();
+  }
+
+  set created(value: Array<string>) {
+    this.set("created", Value.fromStringArray(value));
   }
 }

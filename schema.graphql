@@ -2,19 +2,18 @@
 type _Schema_
   @fulltext(
     name: "apeFilter"
-    langauge: en
+    language: en
     algorithm: rank
     include: [
       {
         entity: "BoredApeToken"
         fields: [{ name: "eyes" }, { name: "background" }]
       }
-      { entity: "BoredApeUser" }
     ]
   )
 
 type BoredApeToken @entity(immutable: true) {
-  id: Bytes!
+  id: ID!
 
   # image info
   tokenID: BigInt!
@@ -37,7 +36,7 @@ type BoredApeToken @entity(immutable: true) {
 }
 
 type BoredApeUser @entity(immutable: true) {
-  id: Bytes!
+  id: ID!
   tokens: [BoredApeToken!]! @derivedfrom(field: "owner")
   created: [BoredApeToken!]! @derivedfrom(field: "creator")
 }
