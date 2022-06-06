@@ -20,6 +20,7 @@ type BoredApeToken @entity(immutable: true) {
   contentURI: String!
   imageURI: String
   baseURI: String
+  createdAtTimestamp: BigInt!
 
   # traits
   eyes: String
@@ -30,13 +31,11 @@ type BoredApeToken @entity(immutable: true) {
   fur: String
   earring: String
 
-  # # relation
-  # owner: BoredApeUser!
-  # creator: BoredApeUser!
+  # relation
+  owner: BoredApeUser!
 }
 
-# type BoredApeUser @entity(immutable: true) {
-#   id: ID!
-#   tokens: [BoredApeToken!]! @derivedfrom(field: "owner")
-#   created: [BoredApeToken!]! @derivedfrom(field: "creator")
-# }
+type BoredApeUser @entity(immutable: true) {
+  id: ID!
+  tokens: [BoredApeToken!]! @derivedfrom(field: "owner")
+}

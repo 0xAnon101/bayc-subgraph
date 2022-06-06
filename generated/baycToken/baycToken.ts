@@ -110,9 +110,9 @@ export class Transfer__Params {
   }
 }
 
-export class BoredApeYachtClub extends ethereum.SmartContract {
-  static bind(address: Address): BoredApeYachtClub {
-    return new BoredApeYachtClub("BoredApeYachtClub", address);
+export class baycToken extends ethereum.SmartContract {
+  static bind(address: Address): baycToken {
+    return new baycToken("baycToken", address);
   }
 
   BAYC_PROVENANCE(): string {

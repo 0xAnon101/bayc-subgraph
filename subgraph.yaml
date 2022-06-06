@@ -3,23 +3,24 @@ schema:
   file: ./schema.graphql
 features:
   - fullTextSearch
+  - ipfsOnEthereumContracts
 dataSources:
   - kind: ethereum
     name: baycToken
     network: mainnet
     source:
       address: "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
-      abi: BoredApeYachtClub
+      abi: baycToken
       startBlock: 12287507
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - BoredApeToken
-        - BoredApeUser
+        - baycToken
+        - baycUser
       abis:
-        - name: BoredApeYachtClub
+        - name: baycToken
           file: ./abis/BoredApeYachtClub.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
