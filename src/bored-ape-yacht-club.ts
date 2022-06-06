@@ -33,11 +33,20 @@ export function handleTransfer(event: TransferEvent): void {
   let baseURI = baycTokenContractInstance.baseURI();
   let contentURI = baycTokenContractInstance.tokenURI(event.params.tokenId);
 
-  if (baseURI.includes("https://")) {
-    baseURI = ipfsURI;
+  /** rerouting to other dns link  */
+  if (baseURI.includes("https")) {
+    baseURI = baseURI;
+  } else if (baseURI.includes("ipfs")) {
+    let hash = baseURI.split("ipfs://").join("");
+    baseURI = "ipfs.io/ipfs" + hash;
+  }
+
+  /** rerouting to other dns link  */
+  if (contentURI.includes("https")) {
+    contentURI = baseURI + event.params.tokenId.toString();
   } else {
-    const newBaseURI = baseURI.replace("ipfs://", "ipfs.io/ipfs/");
-    contentURI = `${newBaseURI}${event.params.tokenId.toString()}`;
+    let hash = contentURI.split("ipfs://").join("");
+    contentURI = "ipfs.io/ipfs/" + hash + event.params.tokenId.toString();
   }
 
   /** Setting the content and base URI */
@@ -46,14 +55,15 @@ export function handleTransfer(event: TransferEvent): void {
 
   /** fetch from IPFS */
   if (contentURI) {
-    const data = ipfs.cat(baseHash);
+    const contentIPFSPath = contentURI.split("ipfs.io/ipfs/").join("");
+    const data = ipfs.cat(contentIPFSPath);
     if (!data) return;
 
     const jsonData = json.fromBytes(data).toObject();
     if (jsonData) {
       const image = jsonData.get("image");
       if (image) {
-        entityToken.imageURI = image.toString(); // you can convert this to dns gateway if you want
+        entityToken.imageURI = image.toString();
       }
     }
   }
