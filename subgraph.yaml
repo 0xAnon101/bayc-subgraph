@@ -17,8 +17,8 @@ dataSources:
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - baycToken
-        - baycUser
+        - BoredApeToken
+        - BoredApeUser
       abis:
         - name: baycToken
           file: ./abis/BoredApeYachtClub.json

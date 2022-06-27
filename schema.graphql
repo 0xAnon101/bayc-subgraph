@@ -37,5 +37,5 @@ type BoredApeToken @entity {
 
 type BoredApeUser @entity {
   id: ID!
-  tokens: [BoredApeToken!]! @derivedfrom(field: "owner")
+  tokens: [BoredApeToken!]! @derivedFrom(field: "owner")
 }
